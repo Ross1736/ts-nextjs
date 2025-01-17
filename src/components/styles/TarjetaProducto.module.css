@@ -1,0 +1,29 @@
+.tarjeta {
+  width: 100%;
+  padding: 15px;
+  border-radius: 10px;
+  background: #252525;
+  box-shadow: 0 4px 8px rgba(100, 100, 100, 0.1);
+
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: flex-start;
+  gap: 10px;
+}
+
+.tarjeta p {
+  display: -webkit-box;
+  display: -moz-box;
+  display: box;
+
+  -webkit-line-clamp: 3;
+  -moz-line-clamp: 3;
+  line-clamp: 3;
+
+  -webkit-box-orient: vertical;
+  -moz-box-orient: vertical;
+  box-orient: vertical;
+
+  overflow: hidden;
+}
