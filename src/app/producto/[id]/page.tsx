@@ -10,7 +10,7 @@ async function getProductoId(id: string): Promise<Producto | null> {
     return null;
   }
 
-  const consulta = await fetch(`${URL_API}/${id}`);
+  const consulta = await fetch(`${URL_API}/products/${id}`);
 
   if (!consulta.ok) {
     return null;
