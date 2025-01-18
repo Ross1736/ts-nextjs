@@ -8,7 +8,7 @@ import TarjetaProducto from "./TarjetaProducto";
 const URL_API: string = process.env.NEXT_PUBLIC_API_URL || "";
 
 function ListaProductos() {
-  const { datos, cargando, error } = useFetch<Producto>(URL_API);
+  const { datos, cargando, error } = useFetch<Producto>(`${URL_API}/products`);
 
   // Componentes para estados de carga/error
   const EstadoCargando = () => (
