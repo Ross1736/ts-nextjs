@@ -1,10 +1,13 @@
-import ListaProductos from "@/components/ListaProductos";
 import Link from "next/link";
+import ListaProductos from "@/components/ListaProductos";
+import Contador from "@/components/Contador";
 
 function Inicio() {
   return (
     <main className="principal">
       <h2>Lista de productos</h2>
+
+      <Contador />
 
       <ul>
         <li>
