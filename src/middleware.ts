@@ -21,7 +21,7 @@ export async function middleware(request: NextRequest) {
       },
     });
 
-    console.log(respuesta.data);
+    console.log("DATA", respuesta.data);
 
     if (respuesta.status === 200 && pathname.startsWith("/auth")) {
       return NextResponse.redirect(new URL("/usuario", request.url));
