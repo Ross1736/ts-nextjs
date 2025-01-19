@@ -1,6 +1,7 @@
 import axios from "axios";
 import { NextResponse } from "next/server";
 import type { NextRequest, MiddlewareConfig } from "next/server";
+import { User } from "./types/typesAuth";
 
 const URL_API: string = process.env.NEXT_PUBLIC_API_URL || "";
 
@@ -14,14 +15,11 @@ export async function middleware(request: NextRequest) {
   }
 
   try {
-    const respuesta = await axios.get<{ [key: string]: any }>(
-      `${URL_API}/auth/profile`,
-      {
-        headers: {
-          Authorization: `Bearer ${authToken!.value}`,
-        },
-      }
-    );
+    const respuesta = await axios.get<User>(`${URL_API}/auth/profile`, {
+      headers: {
+        Authorization: `Bearer ${authToken!.value}`,
+      },
+    });
 
     console.log(respuesta.data);
 
@@ -29,7 +27,11 @@ export async function middleware(request: NextRequest) {
       return NextResponse.redirect(new URL("/usuario", request.url));
     }
   } catch (error: any) {
-    console.log("ERROR", error.response?.data);
+    if (error.response?.status === 401) {
+      console.log("Token inválido o expirado.");
+    } else {
+      console.log("Error del servidor o de la red:", error.message);
+    }
 
     if (pathname.startsWith("/usuario")) {
       return NextResponse.redirect(new URL("/auth", request.url));
